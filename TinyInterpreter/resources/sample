@@ -1,4 +1,4 @@
 Let x = 10;
 Let y = 20;
-Let z = (X * y) + 10;
+Let z = (x * y) + 10;
 Show z;
