@@ -1,6 +1,7 @@
 package com.chen;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Assert;
@@ -33,11 +34,16 @@ public class ParserTest extends TestCase {
 		expected.add(new Token(TokenEnum.Number, "123"));
 		expected.add(new Token(TokenEnum.Semicolon, null));
 		assertEquals(input, expected);
+		
 	}
 	
 	private void assertEquals(String input, List<Token> expected) {
 		Parser p = new Parser();
 		List<Token> actual = p.parse(input);
+		
+		System.out.println(Arrays.toString(expected.toArray()));
+		System.out.println(Arrays.toString(actual.toArray()));
+		
 		assertEquals(expected, actual);
 	}
 	
