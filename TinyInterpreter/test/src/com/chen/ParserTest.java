@@ -27,14 +27,29 @@ public class ParserTest extends TestCase {
 	@Test
 	public void testSimpleAssignment() {
 		String input = "Let xyz=123;";
+		assertEquals(input, getExpectedForSimpleAssignment());
+	}
+
+	@Test
+	public void testSimpleAssignmentSomeSpace() {
+		String input = "Let xyz = 123 ; ";
+		assertEquals(input, getExpectedForSimpleAssignment());		
+	}
+
+	@Test
+	public void testSimpleAssignmentLotsOfSpace() {
+		String input = "Let     xyz   \n  =      123    ;   ";
+		assertEquals(input, getExpectedForSimpleAssignment());		
+	}
+
+	private List<Token> getExpectedForSimpleAssignment() {
 		ArrayList<Token> expected = new ArrayList<Token>();
 		expected.add(new Token(TokenEnum.LetKeyword, null));
 		expected.add(new Token(TokenEnum.Variable, "xyz"));
 		expected.add(new Token(TokenEnum.Assignment, null));
 		expected.add(new Token(TokenEnum.Number, "123"));
 		expected.add(new Token(TokenEnum.Semicolon, null));
-		assertEquals(input, expected);
-		
+		return expected;
 	}
 	
 	private void assertEquals(String input, List<Token> expected) {
