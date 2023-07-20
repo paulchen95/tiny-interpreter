@@ -11,7 +11,8 @@ public class FileReader {
 			String string = "";
 			
 			while(sc.hasNext()) {
-				string += (String)sc.next();
+				string += (String)sc.nextLine();
+				
 			}
 			
 			return string;
