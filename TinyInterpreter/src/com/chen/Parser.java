@@ -10,7 +10,7 @@ public class Parser {
 		ArrayList<Token> tokens = new ArrayList<Token>();
 		int next;
 		
-		for(int i = 0; i < string.length() - 1; i++) {
+		for(int i = 0; i < string.length(); i++) {
 			String current = string.substring(i, i+1);
 			if(current.equals(" ")) {
 				continue;
