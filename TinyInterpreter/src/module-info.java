@@ -1,8 +1,6 @@
 /**
  * 
  */
-/**
- * 
- */
 module TinyInterpreter {
+	requires junit;
 }
