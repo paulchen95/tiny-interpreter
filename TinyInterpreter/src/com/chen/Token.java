@@ -27,7 +27,7 @@ public class Token {
 			case LetKeyword:
 				return "LET";
 			case Number:
-				return value;
+				return "NUM(" + value + ")";
 			case PlusOp:
 				return "+";
 			case RightParan:

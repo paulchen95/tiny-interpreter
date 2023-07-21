@@ -81,8 +81,7 @@ public class Parser {
 	
 	private boolean isNumeric(String s) {
 		try {
-			Double num = Double.parseDouble(s);
-			
+			Double.parseDouble(s);
 		}catch(NumberFormatException e) {
 			return false;
 		}
