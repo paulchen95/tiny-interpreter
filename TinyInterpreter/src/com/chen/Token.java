@@ -4,6 +4,11 @@ public class Token {
 	private TokenEnum kind;
 	private String value;
 
+	public Token(TokenEnum kind) {
+		this.kind = kind;
+		this.value = null;
+	}
+
 	public Token(TokenEnum kind, String value) {
 		this.kind = kind;
 		this.value = value;
