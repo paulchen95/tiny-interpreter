@@ -36,26 +36,26 @@ public class Parser {
 			else if(isNumeric(current)) {
 				next = 1;
 				
-				while(isNumeric(string.substring(i, i + next + 1))){
+				while(isNumeric(string.substring(i, i + next + 1)) && !(Character.isWhitespace(string.charAt(i + next)))){
 					next++;
 					
 				}
 				tokens.add(new Token(TokenEnum.Number, string.substring(i,i+next)));
 				i += next - 1;
-				continue;
+				
 			}
-			if(current.equals("L")) {
+			else if(current.equals("L")) {
 				if(string.substring(i, i + 3).equals("Let")) {
 					tokens.add(new Token(TokenEnum.LetKeyword, null));
 					i += 2;
-					continue;
+					
 				}
 			}
-			if(current.equals("S")) {
+			else if(current.equals("S")) {
 				if(string.substring(i, i + 4).equals("Show")) {
 					tokens.add(new Token(TokenEnum.ShowKeyword, null));
 					i += 3;
-					continue;
+					
 				}
 			}
 			else if(isAlpha(current)) {
@@ -67,7 +67,7 @@ public class Parser {
 				
 				tokens.add(new Token(TokenEnum.Variable, string.substring(i, i + next)));
 				i += next - 1;
-				continue;
+				
 			}
 			else {
 				continue;
@@ -81,7 +81,8 @@ public class Parser {
 	
 	private boolean isNumeric(String s) {
 		try {
-			Double.parseDouble(s);
+			Double num = Double.parseDouble(s);
+			
 		}catch(NumberFormatException e) {
 			return false;
 		}
