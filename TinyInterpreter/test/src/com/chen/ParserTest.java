@@ -47,12 +47,106 @@ public class ParserTest extends TestCase {
 
 	private List<Token> getExpectedForSimpleAssignment() {
 		ArrayList<Token> expected = new ArrayList<Token>();
-		expected.add(new Token(TokenEnum.LetKeyword, null));
+		expected.add(new Token(TokenEnum.LetKeyword));
 		expected.add(new Token(TokenEnum.Variable, "xyz"));
-		expected.add(new Token(TokenEnum.Assignment, null));
+		expected.add(new Token(TokenEnum.Assignment));
 		expected.add(new Token(TokenEnum.Number, "123"));
-		expected.add(new Token(TokenEnum.Semicolon, null));
+		expected.add(new Token(TokenEnum.Semicolon));
 		return expected;
+	}
+	
+	@Test
+	public void testLetVarPlusNum() {
+		String input = "Let  xyz   \n  =    xyz  +  2    ;   ";
+		ArrayList<Token> expected = new ArrayList<Token>();
+		expected.add(new Token(TokenEnum.LetKeyword));
+		expected.add(new Token(TokenEnum.Variable, "xyz"));
+		expected.add(new Token(TokenEnum.Assignment));
+		expected.add(new Token(TokenEnum.Variable, "xyz"));
+		expected.add(new Token(TokenEnum.PlusOp));
+		expected.add(new Token(TokenEnum.Number, "2"));
+		expected.add(new Token(TokenEnum.Semicolon));
+		assertEquals(getMethodName(), input, expected);		
+	}
+
+	@Test
+	public void testLetVarPlusVar() {
+		String input = "Let  xyz   \n  =    abc  +  def    ;   ";
+		ArrayList<Token> expected = new ArrayList<Token>();
+		expected.add(new Token(TokenEnum.LetKeyword));
+		expected.add(new Token(TokenEnum.Variable, "xyz"));
+		expected.add(new Token(TokenEnum.Assignment));
+		expected.add(new Token(TokenEnum.Variable, "abc"));
+		expected.add(new Token(TokenEnum.PlusOp));
+		expected.add(new Token(TokenEnum.Variable, "def"));
+		expected.add(new Token(TokenEnum.Semicolon));
+		assertEquals(getMethodName(), input, expected);		
+	}
+	
+	@Test
+	public void testLetNumPlusVar() {
+		String input = "Let  xyz   \n  =    2  +  def    ;   ";
+		ArrayList<Token> expected = new ArrayList<Token>();
+		expected.add(new Token(TokenEnum.LetKeyword));
+		expected.add(new Token(TokenEnum.Variable, "xyz"));
+		expected.add(new Token(TokenEnum.Assignment));
+		expected.add(new Token(TokenEnum.Number, "2"));
+		expected.add(new Token(TokenEnum.PlusOp));
+		expected.add(new Token(TokenEnum.Variable, "def"));
+		expected.add(new Token(TokenEnum.Semicolon));
+		assertEquals(getMethodName(), input, expected);		
+	}
+
+	@Test
+	public void testLetNumPlusNum() {
+		String input = "Let  xyz   \n  =    2  +  3    ;   ";
+		ArrayList<Token> expected = new ArrayList<Token>();
+		expected.add(new Token(TokenEnum.LetKeyword));
+		expected.add(new Token(TokenEnum.Variable, "xyz"));
+		expected.add(new Token(TokenEnum.Assignment));
+		expected.add(new Token(TokenEnum.Number, "2"));
+		expected.add(new Token(TokenEnum.PlusOp));
+		expected.add(new Token(TokenEnum.Number, "3"));
+		expected.add(new Token(TokenEnum.Semicolon));
+		assertEquals(getMethodName(), input, expected);		
+	}
+
+	@Test
+	public void testLetWithParan() {
+		String input = "Let  xyz   \n  =   ( 2  +  3  )   ;   ";
+		ArrayList<Token> expected = new ArrayList<Token>();
+		expected.add(new Token(TokenEnum.LetKeyword));
+		expected.add(new Token(TokenEnum.Variable, "xyz"));
+		expected.add(new Token(TokenEnum.Assignment));
+		expected.add(new Token(TokenEnum.LeftParan));
+		expected.add(new Token(TokenEnum.Number, "2"));
+		expected.add(new Token(TokenEnum.PlusOp));
+		expected.add(new Token(TokenEnum.Number, "3"));
+		expected.add(new Token(TokenEnum.RightParan));
+		expected.add(new Token(TokenEnum.Semicolon));
+		assertEquals(getMethodName(), input, expected);		
+	}
+
+	@Test
+	public void testLetComplex() {
+		String input = "Let  a  =  a * ( 2  + ( b * c ))   ;   ";
+		ArrayList<Token> expected = new ArrayList<Token>();
+		expected.add(new Token(TokenEnum.LetKeyword));
+		expected.add(new Token(TokenEnum.Variable, "a"));
+		expected.add(new Token(TokenEnum.Assignment));
+		expected.add(new Token(TokenEnum.Variable, "a"));
+		expected.add(new Token(TokenEnum.StarOp));
+		expected.add(new Token(TokenEnum.LeftParan));
+		expected.add(new Token(TokenEnum.Number, "2"));
+		expected.add(new Token(TokenEnum.PlusOp));
+		expected.add(new Token(TokenEnum.LeftParan));
+		expected.add(new Token(TokenEnum.Variable, "b"));
+		expected.add(new Token(TokenEnum.StarOp));
+		expected.add(new Token(TokenEnum.Variable, "c"));
+		expected.add(new Token(TokenEnum.RightParan));
+		expected.add(new Token(TokenEnum.RightParan));
+		expected.add(new Token(TokenEnum.Semicolon));
+		assertEquals(getMethodName(), input, expected);		
 	}
 	
 	@Test
@@ -75,9 +169,9 @@ public class ParserTest extends TestCase {
 
 	private List<Token> getExpectedForShow() {
 		ArrayList<Token> expected = new ArrayList<Token>();
-		expected.add(new Token(TokenEnum.ShowKeyword, null));
+		expected.add(new Token(TokenEnum.ShowKeyword));
 		expected.add(new Token(TokenEnum.Variable, "xyz"));
-		expected.add(new Token(TokenEnum.Semicolon, null));
+		expected.add(new Token(TokenEnum.Semicolon));
 		return expected;
 	}
 	
