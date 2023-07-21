@@ -12,6 +12,8 @@ public class TinyInterpreter {
 		
 		Parser parse = new Parser();
 		System.out.println(parse.parse(file).toString());
+		
+		
 	}
 }
 
