@@ -1,15 +1,18 @@
 package com.chen.node;
 
+import java.util.List;
+
+import com.chen.Token;
+import com.chen.Tuple;
+
 public class ComExprNode extends ExprNode {
 
 	private ExprNode left;
 	private OpNode op;
 	private ExprNode right;
 	
-	public ComExprNode(ExprNode left, OpNode op, ExprNode right) {
-		this.left = left;
-		this.op = op;
-		this.right = right;
-
+	@Override
+	public Tuple makeNode(List<Token> list, int start) {
+		return null;
 	}
 }
