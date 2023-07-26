@@ -1,12 +1,29 @@
 package com.chen.node;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ProgNode {
+import com.chen.Token;
+import com.chen.Tuple;
 
-	private List<StmtNode> list;
-	
-	public ProgNode(List<StmtNode> list) {
-		this.list = list;
+public class ProgNode implements Node {
+
+	private List<StmtNode> stmts;
+
+	public List<StmtNode> getStmts() {
+		return this.stmts;
+	}
+
+	@Override
+	public Tuple makeNode(List<Token> tokens, int start) {
+		stmts = new ArrayList<StmtNode>();
+		while (start < tokens.size()) {
+			StmtNode stmt = new StmtNode();
+			Tuple output = stmt.makeNode(tokens, start);
+			stmts.add((StmtNode) output.getNode());
+			start = output.getEnd();
+		}
+		Tuple tuple = new Tuple(this, start);
+		return tuple;
 	}
 }
