@@ -11,6 +11,12 @@ public class VarNode extends SimpExprNode {
 	
 	@Override
 	public Tuple makeNode(List<Token> list, int start) {
-		return null;
+		
+		Token t = list.get(start);
+		
+		var = (String) t.getValue();
+		Tuple var = new Tuple(this, start + 1);
+		
+		return var;
 	}
 }
