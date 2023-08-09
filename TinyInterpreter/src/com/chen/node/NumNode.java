@@ -13,7 +13,7 @@ public class NumNode extends SimpExprNode {
 	public Tuple makeNode(List<Token> list, int start) {
 		Token t = list.get(start);
 		
-		num = (int) t.getValue();
+		num = Integer.parseInt((String) t.getValue());
 		Tuple result = new Tuple(this, start + 1);
 		return result;
 	}
