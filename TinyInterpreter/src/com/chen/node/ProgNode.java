@@ -21,7 +21,7 @@ public class ProgNode implements Node {
 			StmtNode stmt = new StmtNode();
 			Tuple output = stmt.makeNode(tokens, start);
 			stmts.add((StmtNode) output.getNode());
-			start = output.getEnd();
+			start = output.getNext();
 		}
 		Tuple tuple = new Tuple(this, start);
 		return tuple;

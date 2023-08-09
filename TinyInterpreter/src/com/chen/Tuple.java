@@ -4,18 +4,18 @@ import com.chen.node.Node;
 
 public class Tuple {
 	private Node node;
-	private int end;
+	private int next;
 	
-	public Tuple(Node node, int end) {
+	public Tuple(Node node, int next) {
 		this.node = node;
-		this.end = end;
+		this.next = next;
 	}
 	
 	public Node getNode() {
 		return this.node;
 	}
 
-	public int getEnd() {
-		return this.end;
+	public int getNext() {
+		return this.next;
 	}
 }

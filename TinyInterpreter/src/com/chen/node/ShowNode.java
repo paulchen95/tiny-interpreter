@@ -16,10 +16,10 @@ public class ShowNode extends StmtNode {
 		if(list.get(start).getKind().equals(TokenEnum.ShowKeyword)) {
 			VarNode var = new VarNode();
 			Tuple result = var.makeNode(list, start + 1);
-			int end = result.getEnd();
+			int next = result.getNext();
 			
-			if(list.get(end).getKind().equals(TokenEnum.Semicolon)) {
-				return new Tuple(this, end + 1);
+			if(list.get(next).getKind().equals(TokenEnum.Semicolon)) {
+				return new Tuple(this, next + 1);
 			}
 
 			throw new RuntimeException("no semi");
