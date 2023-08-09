@@ -17,7 +17,7 @@ public class ExprNode implements Node {
 		} else if (TokenEnum.Variable.equals(currentToken.getKind())) {
 			// var
 		} else if (TokenEnum.Semicolon.equals(nextToken.getKind())) {
-			
+			return new NumNode().makeNode(list, start);
 		} else {
 			//it's complicated
 		}
