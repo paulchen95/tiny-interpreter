@@ -10,6 +10,8 @@ import java.util.Optional;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.chen.node.LetNode;
+
 import junit.framework.TestCase;
 
 public class ASTTest extends TestCase {
@@ -27,6 +29,23 @@ public class ASTTest extends TestCase {
 		Assert.assertTrue(true);
 	}
 
+	@Test
+	public void testSimpleLet() {
+		// Setup a list of Tokens
+		ArrayList<Token> list = new ArrayList<Token>();
+		list.add(new Token(TokenEnum.LetKeyword));
+		list.add(new Token(TokenEnum.Variable, "xyz"));
+		list.add(new Token(TokenEnum.Assignment));
+		list.add(new Token(TokenEnum.Number, "2"));
+		list.add(new Token(TokenEnum.Semicolon));
+		
+		// Test making a LetNode
+		Tuple result = new LetNode().makeNode(list, 0);
+		
+		assertEquals("result.getNext() must return 5", 5, result.getNext());
+		
+	}
+	
 	private List<Token> getExpectedForShow() {
 		ArrayList<Token> expected = new ArrayList<Token>();
 		expected.add(new Token(TokenEnum.ShowKeyword));
